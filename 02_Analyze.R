@@ -42,14 +42,14 @@ geom_text(
     label = mean)
 )
 
-
-ggplot(
-  ESS_prepared,
-  aes(
-    x = cntry,
-    y = agea)
-) +
-  geom_violin()
+violinplot_age_per_country <- 
+  ggplot(
+    ESS_prepared,
+    aes(
+      x = cntry,
+      y = agea)
+  ) +
+    geom_violin()
 
 ggplot(
   ESS_prepared,
@@ -57,10 +57,7 @@ ggplot(
     x = agea,
   )
 ) +
-  geom_histogram(
-    binwidth = 5
-  )
-
+  geom_histogram()
 
 # gender
 
@@ -115,15 +112,15 @@ df_participants_per_country <-
       cntry = factor(cntry, levels = cntry)  # Reorder factor levels
     )
 
-
-ggplot(
-  df_participants_per_country,
-  aes(
-    x = cntry,
-    y = count
-  )
-) +
-  geom_col()
+barplot_countries_surveyed <- 
+  ggplot(
+    df_participants_per_country,
+    aes(
+      x = cntry,
+      y = count
+    )
+  ) +
+    geom_col()
 
 
 
@@ -178,7 +175,7 @@ create_facet_plot <- function(data, y_variable, y_limits = NULL, title, ylab) {
       panel.grid = element_blank(),
       panel.grid.major.y = element_line(
         colour = "black", 
-        size = 0.3
+        linewidth = 0.3
       ),
       legend.position = "bottom",
       legend.title = element_blank()
@@ -189,7 +186,7 @@ create_facet_plot <- function(data, y_variable, y_limits = NULL, title, ylab) {
     labs(
       title = title,
       subtitle = "Grouped by Country",
-      x = "Age Groups", 
+      x = "Age", 
       y = ylab, 
       caption = "Source: ESS11"
     )
@@ -223,6 +220,18 @@ barplot_lr_self <-
 
 
 # Save Plots ------------------------------------------------------------------------------------------------------
+
+write_rds(
+  x = barplot_countries_surveyed,
+  file = "repo/barplot_countries_surveyed.rds"
+)
+
+write_rds(
+  x = violinplot_age_per_country,
+  file = "repo/violinplot_age_per_country.rds"
+)
+
+
 
 
 write_rds(

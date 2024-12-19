@@ -1,0 +1,94 @@
+---
+title: "Introduction to R - Project Report"
+author: 
+    - "Silvan Hess, silvan.hess@stud.unilu.ch, S19-862-614"
+    - "Lecturer: Dr. Fabian Jundt"
+date: today
+date-format: "D. MMMM YYYY"
+format: html
+# fontsize: 12pt
+# linestretch: 1.5
+# geometry: left=2.5cm,right=2.5cm,top=3cm,bottom=3cm
+execute:
+  echo: false
+  warning: false
+knitr:
+  opts_chunk:
+    message: false
+---
+
+```{r}
+#| label: setup
+#| message: false
+
+# Load Packages
+library(tidyverse)
+library(haven)
+
+```
+
+## Introduction
+
+The purpose of this Report is to get an overview over the survey data.
+
+We look at the Variables:
+
+-   Country, Gender, Age
+
+-   Political Orientation
+
+-   Trust in Political Institutions
+
+-   Belief in Human Caused Climate Change
+
+## Analyze Demographics
+
+First, we look at which countries the survey took place in and how many people were surveyed in each country.
+
+```{r}
+# call barplot
+read_rds("repo/barplot_countries_surveyed.rds")
+```
+
+Next, we look at the age distribution in the countries.
+
+```{r}
+# call violinplot
+read_rds("repo/violinplot_age_per_country.rds")
+```
+
+## Visualize political orientation, trust and climate beliefs across demographics
+
+In this chapter we investigate the relationship of age and political orientation, trust and climate change beliefs for different countries.
+
+### Political Orientation
+
+```{r}
+#call facet barplot of political orientation
+read_rds("repo/barplot_lr_self.rds")
+```
+### Trust in Political Institutions
+
+```{r}
+#call facet barplot of trust
+read_rds("repo/barplot_trust.rds")
+```
+
+### Belief in Human Made Climate Change
+
+```{r}
+#call facet barplot of CC Belief
+read_rds("repo/barplot_climate_change.rds")
+```
+
+# Appendix
+
+## R Code
+
+The following code was used in this Report:
+
+```{r ref.label=knitr::all_labels()}
+#| echo: true
+#| eval: false
+
+```
